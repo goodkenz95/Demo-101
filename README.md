@@ -76,3 +76,14 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## INSTALLATION
+
+- Copy .env.example to .env
+- Update Database config in .env  (Database credentials and Database name)
+- Do command 'php artisan key:generate'
+- Do command 'php artisna migrate'
+
+
+

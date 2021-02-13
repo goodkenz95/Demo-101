@@ -84,6 +84,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - Update Database config in .env  (Database credentials and Database name)
 - Do command 'php artisan key:generate'
 - Do command 'php artisan migrate'
+- Do command 'php artisan db:seed'
 
 
 

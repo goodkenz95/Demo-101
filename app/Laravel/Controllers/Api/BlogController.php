@@ -62,8 +62,6 @@ class BlogController extends Controller{
 
 		callback:
 		return response()->json($this->response, $this->response_code);
-
-
 	}
 
 	public function store(BlogRequest $request){
@@ -79,8 +77,6 @@ class BlogController extends Controller{
 
 		$this->response_code = 201;
 		return response()->json($this->response, $this->response_code);
-
-
 	}
 
 	public function update(BlogRequest $request,$id = NULL){
@@ -92,7 +88,6 @@ class BlogController extends Controller{
 			$this->response['msg'] = "Blog not found.";
 			$this->response_code = 404;
 			goto callback;
-
 		}
 
 		$blog->title = $request->input('title');
@@ -106,8 +101,6 @@ class BlogController extends Controller{
 
 		callback:
 		return response()->json($this->response, $this->response_code);
-
-
 	}
 
 	public function destroy(PageRequest $request, $id = NULL){

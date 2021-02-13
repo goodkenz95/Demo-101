@@ -9,4 +9,8 @@ class Blog extends Model
 {
 	use SoftDeletes;
     protected $table = 'blog';
+
+    public function comments(){
+    	return $this->hasMany("App\Laravel\Models\BlogComment",'blog_id','id');
+    }
 }

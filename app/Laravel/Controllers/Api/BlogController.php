@@ -9,7 +9,7 @@ use App\Laravel\Requests\PageRequest;
 use App\Laravel\Requests\Api\BlogRequest;
 
 use App\Laravel\Models\Blog;
-use App\Laravel\Transformers\{TransformerManager,BlogTransformer};
+use App\Laravel\Transformers\{TransformerManager,BlogTransformer,ArticleTransformer};
 
 class BlogController extends Controller{
 
@@ -43,17 +43,7 @@ class BlogController extends Controller{
 	}
 
 	public function show(PageRequest $request,$id = NULL){
-		$blog = Blog::find($id);
-
-		if(!$blog){
-			$this->response['status'] = FALSE;
-			$this->response['status_code'] = "NOT_FOUND";
-			$this->response['msg'] = "Blog not found.";
-			$this->response_code = 404;
-			goto callback;
-
-		}
-
+		$blog = $request->get('blog_data');
 
 		$this->response['status_code'] = "BLOG_DETAILS";
 		$this->response['msg'] = "Blog details.";
@@ -80,15 +70,7 @@ class BlogController extends Controller{
 	}
 
 	public function update(BlogRequest $request,$id = NULL){
-		$blog = Blog::find($id);
-
-		if(!$blog){
-			$this->response['status'] = FALSE;
-			$this->response['status_code'] = "NOT_FOUND";
-			$this->response['msg'] = "Blog not found.";
-			$this->response_code = 404;
-			goto callback;
-		}
+		$blog = $request->get('blog_data');
 
 		$blog->title = $request->input('title');
 		$blog->content = $request->input('content');
@@ -104,15 +86,7 @@ class BlogController extends Controller{
 	}
 
 	public function destroy(PageRequest $request, $id = NULL){
-		$blog = Blog::find($id);
-
-		if(!$blog){
-			$this->response['status'] = FALSE;
-			$this->response['status_code'] = "NOT_FOUND";
-			$this->response['msg'] = "Blog not found.";
-			$this->response_code = 404;
-			goto callback;
-		}
+		$blog = $request->get('blog_data');
 
 		$blog->delete();
 

@@ -7,22 +7,24 @@ use Illuminate\Support\Collection;
 use League\Fractal\TransformerAbstract;
 
 use Str;
-class BlogTransformer extends TransformerAbstract{
+class ArticleTransformer extends TransformerAbstract{
 
 	protected $availableIncludes = [
 		'comments','last_comment'
     ];
 
 
-	public function transform(Blog $blog) {
+	public function transform(Blog $article) {
 
 	    return [
-	     	'id' => $blog->id,
-	     	'blog_id' => $blog->id,
-	     	'blog_name' => $blog->title,
-	     	'content' => $blog->content,
+	     	'id' => $article->id,
+	     	'article_id' => $article->id,
+	     	'article_name' => $article->title,
+	     	'content' => $article->content,
 	     	'another_field' => "Content created from transformer",
-	     	'slug' => "api/blog/".Str::slug("{$blog->id} {$blog->title}")
+	     	'slug' => "api/blog/".Str::slug("{$article->id} {$article->title}"),
+	     	'author' => "",
+	     	'category' => ""
 	     ];
 	}
 
@@ -33,11 +35,6 @@ class BlogTransformer extends TransformerAbstract{
 
 	public function includeLastComment(Blog $blog){
 		$last_comment = BlogComment::where('blog_id',$blog->id)->orderBy('created_at',"DESC")->first();
-		if(!$last_comment) {
-			$last_comment =  new BlogComment;
-			$last_comment->id = 0;
-		}
-
 		return $this->item($last_comment, new BlogCommentTransformer);
 
 	}

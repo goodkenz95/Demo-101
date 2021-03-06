@@ -9,9 +9,9 @@ Route::group(['as' => "api.",
 	Route::group(['prefix' => "blog",'as' => "blog."],function(){
 		Route::post('/',['as' => "index",'uses' => "BlogController@index"]);
 		Route::post('create',['as' => "store",'uses' => "BlogController@store"]);
-		Route::post('edit/{id?}',['as' => "update",'uses' => "BlogController@update"]);
-		Route::post('delete/{id?}',['as' => "destroy",'uses' => "BlogController@destroy"]);
-		Route::post('{id?}',['as' => "show",'uses' => "BlogController@show"]);
+		Route::post('edit/{id?}',['as' => "update",'uses' => "BlogController@update",'middleware' => ["api.exist:blog"] ]);
+		Route::post('delete/{id?}',['as' => "destroy",'uses' => "BlogController@destroy",'middleware' => ["api.exist:blog"]]);
+		Route::post('{id?}',['as' => "show",'uses' => "BlogController@show",'middleware' => ["api.exist:blog"]]);
 
 	});
 

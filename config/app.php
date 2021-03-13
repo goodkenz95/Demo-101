@@ -161,7 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Intervention\Image\ImageServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -225,7 +225,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'FileUploader' => App\Laravel\Services\FileUploader::class,
+        'ImageUploader' => App\Laravel\Services\ImageUploader::class,
+        'Helper' => App\Laravel\Services\Helper::class,
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Carbon' => Carbon\Carbon::class,
     ],
 
 ];

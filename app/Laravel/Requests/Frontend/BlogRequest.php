@@ -9,7 +9,8 @@ class BlogRequest extends RequestManager{
 
 		$rules = [
 			'title' => "required|min:10",
-			'content' => "required|min:100"
+			'content' => "required|min:100",
+			'image' => "required|image",
 		];
 
 		return $rules;

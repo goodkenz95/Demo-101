@@ -9,6 +9,8 @@ use App\Laravel\Requests\PageRequest;
 use App\Laravel\Requests\Frontend\BlogRequest;
 
 use App\Laravel\Models\Blog;
+use App\Laravel\Services\FileUploader;
+use App\Laravel\Services\ImageUploader;
 
 class BlogController extends Controller{
 
@@ -32,6 +34,8 @@ class BlogController extends Controller{
 	}
 
 	public function store(BlogRequest $request){
+
+		$image = ImageUploader::upload($request->file('image'),"data/images/blog");
 		$blog = new Blog;
 		$blog->title = $request->input('title');
 		$blog->content = $request->input('content');
